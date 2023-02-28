@@ -36,7 +36,7 @@ AddElementTest >> testGetSize [
 AddElementTest >> testIsLinkedListEmpty [
 	| linkedList result|
 	linkedList:= BasicLinkedList new.
-	result := linkedList isLinkedListEmpty .
+	result := linkedList isEmpty .
 	self assert: result equals: true.
 
 	
