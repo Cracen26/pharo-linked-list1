@@ -39,9 +39,8 @@ BasicLinkedList >> at: anInteger [
 
 { #category : #accessing }
 BasicLinkedList >> at: anInteger put: anObjectOrLink [
-	(anInteger = size + 1 ) ifTrue: [ ^self addLast: anObjectOrLink ].
-	(anInteger = 1) ifTrue: [ ^head = anObjectOrLink ].
-	(self at: anInteger - 1) nextLink: anObjectOrLink.
+	(anInteger = size ) ifTrue: [ ^self addLast: anObjectOrLink ].
+	(anInteger = 1) ifTrue: [ head := anObjectOrLink ].
 ]
 
 { #category : #accessing }
@@ -58,6 +57,11 @@ BasicLinkedList >> initialize [
 { #category : #testing }
 BasicLinkedList >> isEmpty [
 	^head isNil.
+]
+
+{ #category : #removing }
+BasicLinkedList >> remove [
+	(size = 0) ifFalse: [ tail := nil ]
 ]
 
 { #category : #accessing }

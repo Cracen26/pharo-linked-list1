@@ -25,6 +25,22 @@ AddElementTest >> testAddElement [
 ]
 
 { #category : #tests }
+AddElementTest >> testAt [
+	| list |
+	list := BasicLinkedList  new.
+	list addLast: 2.
+	self assert: (list at:1) equals: 2.
+]
+
+{ #category : #tests }
+AddElementTest >> testAtPut [
+	|list |
+	list := BasicLinkedList new.
+	list at: 1 put: 2.
+	self assert: (list at:1) equals: 2 .
+]
+
+{ #category : #tests }
 AddElementTest >> testGetSize [
 	| linkedList|
 	linkedList:= BasicLinkedList new.
