@@ -45,7 +45,7 @@ BasicLinkedList >> at: anInteger [
 BasicLinkedList >> at: anInteger put: anObjectOrLink [
 	(anInteger = size + 1 ) ifTrue: [ ^self addLast: anObjectOrLink ].
 	(anInteger = 1) ifTrue: [ ^head = anObjectOrLink ].
-	(self at: anInteger - 1) nextLink: anObjectOrLink.
+	(self at: anInteger - 1) nextLink: anObjectOrLink
 ]
 
 { #category : #accessing }
