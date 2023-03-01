@@ -64,6 +64,32 @@ BasicLinkedList >> remove [
 	(size = 0) ifFalse: [ tail := nil ]
 ]
 
+{ #category : #removing }
+BasicLinkedList >> remove: anObject [
+	|current|
+	current := head .
+	[ current isNotNil ]
+   		whileTrue: [ current data = anObject
+      		ifTrue: [ current = head 
+   				ifTrue: [ head  := head nextLink ]
+            	ifFalse: [ tail nextLink: current nextLink ].
+            		size := size - 1.
+               	^ self ].
+               	tail := current.
+               	current := current nextLink ].
+]
+
+{ #category : #enumerating }
+BasicLinkedList >> select: aBlock [
+	| current |
+    current := head .
+    [ current isNotNil ]
+        whileTrue: [ 
+				(aBlock value: current value )	ifTrue: [ ^ current value ].
+        		current := current nextLink ].
+	^current.
+]
+
 { #category : #accessing }
 BasicLinkedList >> size [
 	^size

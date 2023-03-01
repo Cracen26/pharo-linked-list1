@@ -57,3 +57,13 @@ AddElementTest >> testIsLinkedListEmpty [
 
 	
 ]
+
+{ #category : #tests }
+AddElementTest >> testRemove [
+	| linkedlist |
+]
+
+{ #category : #tests }
+AddElementTest >> testRemoveAt [
+	| linkedlist |
+]
