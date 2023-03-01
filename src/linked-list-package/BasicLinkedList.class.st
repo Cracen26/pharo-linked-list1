@@ -10,11 +10,12 @@ Class {
 }
 
 { #category : #adding }
-BasicLinkedList >> addLast: anObjectOrLink [
+BasicLinkedList >> addLast: anObject [
 	| link |
-	link:= anObjectOrLink .
-	size = 0 ifFalse: [ tail nextLink:link ] 
-			 ifTrue: [ head := link ].
+	link:= BasicLink new .
+	link value: anObject.
+	size = 0 ifFalse: [ tail nextLink value:link ]
+			 	ifTrue: [ head := link ].
 	tail := link .
    size := size + 1.
 	
@@ -41,6 +42,35 @@ BasicLinkedList >> at: anInteger [
 BasicLinkedList >> at: anInteger put: anObjectOrLink [
 	(anInteger = size ) ifTrue: [ ^self addLast: anObjectOrLink ].
 	(anInteger = 1) ifTrue: [ head := anObjectOrLink ].
+	^anObjectOrLink .
+]
+
+{ #category : #enumerating }
+BasicLinkedList >> collect: aBlock [
+	| list |
+	list := self class new.
+	self do: [ :each |	list addLast: aBlock  ].
+	^ list
+]
+
+{ #category : #enumerating }
+BasicLinkedList >> detect: aBlock [
+	| current |
+   current := head .
+   [ current isNotNil ]
+   		whileTrue: [ (aBlock value: current value )
+      		ifTrue: [ ^ current value ].
+        	current := current nextLink ].
+	^ nil
+]
+
+{ #category : #enumerating }
+BasicLinkedList >> do: aBlock [
+	| current |
+   	current := head . 
+   	[current isNotNil] whileTrue: [
+   		aBlock value: current value.
+   		current := current nextLink.]
 ]
 
 { #category : #accessing }
@@ -54,14 +84,30 @@ BasicLinkedList >> initialize [
 	size := 0
 ]
 
+{ #category : #enumerating }
+BasicLinkedList >> inject: aBlock into: anObject [
+	| current result |
+   	current := head .
+   	result := anObject.
+   	[ current isNotNil ]
+   		whileTrue: [ result := aBlock value: current value.
+      		current := current next ].
+   	^ result
+]
+
 { #category : #testing }
 BasicLinkedList >> isEmpty [
 	^head isNil.
 ]
 
-{ #category : #removing }
-BasicLinkedList >> remove [
-	(size = 0) ifFalse: [ tail := nil ]
+{ #category : #enumerating }
+BasicLinkedList >> reject: aBlock [
+	| current |
+   	current := head .
+   	[ current isNotNil ]
+   		whileTrue: [(aBlock value: current value )	ifFalse: [ ^ current value ].
+      		current := current nextLink ].
+	^current.
 ]
 
 { #category : #removing }
@@ -69,7 +115,7 @@ BasicLinkedList >> remove: anObject [
 	|current|
 	current := head .
 	[ current isNotNil ]
-   		whileTrue: [ current data = anObject
+   		whileTrue: [ current value = anObject
       		ifTrue: [ current = head 
    				ifTrue: [ head  := head nextLink ]
             	ifFalse: [ tail nextLink: current nextLink ].
@@ -77,6 +123,17 @@ BasicLinkedList >> remove: anObject [
                	^ self ].
                	tail := current.
                	current := current nextLink ].
+]
+
+{ #category : #accessing }
+BasicLinkedList >> removeAt: anObject [
+	| current |
+   	current := head .
+	anObject  timesRepeat: [current := current nextLink ].
+   	current = head
+   		ifTrue: [ head  := head nextLink ]
+   		ifFalse: [ tail nextLink: current nextLink ].
+   	size := size - 1.
 ]
 
 { #category : #enumerating }
@@ -93,4 +150,18 @@ BasicLinkedList >> select: aBlock [
 { #category : #accessing }
 BasicLinkedList >> size [
 	^size
+]
+
+{ #category : #sorting }
+BasicLinkedList >> sort [
+	| list |
+   	list := self class new.
+   	self initialize .
+   	list do: [ :each | self addLast: each ].
+	^true.
+]
+
+{ #category : #sorting }
+BasicLinkedList >> sorted [
+	^self sort.
 ]
