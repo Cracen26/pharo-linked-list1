@@ -1,5 +1,5 @@
 Class {
-	#name : #AddElementTest,
+	#name : #TestMethodsLinkedList,
 	#superclass : #TestCase,
 	#instVars : [
 		'samplelist'
@@ -8,13 +8,13 @@ Class {
 }
 
 { #category : #running }
-AddElementTest >> setUp [
+TestMethodsLinkedList >> setUp [
    super setUp. 
    samplelist := BasicLinkedList new.
 ]
 
 { #category : #tests }
-AddElementTest >> testAddElement [
+TestMethodsLinkedList >> testAddElement [
    "test case to add element"
    | linkedList | 
 	linkedList := BasicLinkedList new.
@@ -25,7 +25,7 @@ AddElementTest >> testAddElement [
 ]
 
 { #category : #tests }
-AddElementTest >> testAt [
+TestMethodsLinkedList >> testAt [
 	| list |
 	list := BasicLinkedList  new.
 	list addLast: 2.
@@ -33,37 +33,38 @@ AddElementTest >> testAt [
 ]
 
 { #category : #tests }
-AddElementTest >> testAtPut [
+TestMethodsLinkedList >> testAtPut [
 	|list |
 	list := BasicLinkedList new.
 	self assert: (list at:1 put:2) equals: 2 .
 ]
 
 { #category : #tests }
-AddElementTest >> testCollect [
-	| list upadated |
-	list := BasicLinkedList new.
-	list addLast: 1.
-	list addLast: 2.
+TestMethodsLinkedList >> testCollect [
+	| linkedList upadated |
+	linkedList := BasicLinkedList new.
+	linkedList addLast: 1.
+	linkedList addLast: 2.
 	
-	upadated := list collect: [ :each | each * 4 ].
+	upadated := linkedList collect: [ :each | each * 4 ].
 	
 	self assert: upadated first equals: 2.
 	self assert: upadated size equals: 2.
 ]
 
 { #category : #tests }
-AddElementTest >> testDetection [
+TestMethodsLinkedList >> testDetection [
 	| list result |
 	list := BasicLinkedList new.
-	list addLast: 2.
+	list addLast: 2 .
 	list addLast: 3.
+	list addLast: 4.
 	result := list detect: [ :each | each value even ].
 	self assert: result value equals: 2.
 ]
 
 { #category : #tests }
-AddElementTest >> testDo [
+TestMethodsLinkedList >> testDo [
 	| list sum |
 	list := BasicLinkedList new.
 	sum := 2.
@@ -76,7 +77,7 @@ AddElementTest >> testDo [
 ]
 
 { #category : #tests }
-AddElementTest >> testEmpty [
+TestMethodsLinkedList >> testEmpty [
 	| list node1|
 	list := BasicLinkedList new.
 	node1 := BasicLink new.
@@ -86,7 +87,7 @@ AddElementTest >> testEmpty [
 ]
 
 { #category : #tests }
-AddElementTest >> testFirst [
+TestMethodsLinkedList >> testFirst [
 	| list "node1"  |
 	list := BasicLinkedList new.
 	list addLast: 2.
@@ -95,15 +96,15 @@ AddElementTest >> testFirst [
 ]
 
 { #category : #tests }
-AddElementTest >> testGetSize [
+TestMethodsLinkedList >> testGetSize [
 	| linkedList|
 	linkedList:= BasicLinkedList new.
 	linkedList addLast: 5.
-	self assert: (linkedList getSize) equals: 1.
+	self assert: (linkedList size) equals: 1.
 ]
 
 { #category : #tests }
-AddElementTest >> testInjectinto [
+TestMethodsLinkedList >> testInjectinto [
 	| list result |
 	list := BasicLinkedList  new.
 	list addLast: 1.
@@ -114,7 +115,7 @@ AddElementTest >> testInjectinto [
 ]
 
 { #category : #tests }
-AddElementTest >> testIsLinkedListEmpty [
+TestMethodsLinkedList >> testIsLinkedListEmpty [
 	| linkedList result|
 	linkedList:= BasicLinkedList new.
 	result := linkedList isEmpty .
@@ -124,7 +125,7 @@ AddElementTest >> testIsLinkedListEmpty [
 ]
 
 { #category : #tests }
-AddElementTest >> testReject [
+TestMethodsLinkedList >> testReject [
 	| list result|
 	list := BasicLinkedList new.
 	list addLast: 2 .
@@ -135,7 +136,7 @@ AddElementTest >> testReject [
 ]
 
 { #category : #tests }
-AddElementTest >> testRemove [
+TestMethodsLinkedList >> testRemove [
 	|list |
 	list := BasicLinkedList  new.
 	list addLast: 2.
@@ -146,7 +147,7 @@ AddElementTest >> testRemove [
 ]
 
 { #category : #tests }
-AddElementTest >> testRemoveAt [
+TestMethodsLinkedList >> testRemoveAt [
 	|list |
 	list := BasicLinkedList new.
 	list addLast: 2.
@@ -157,7 +158,7 @@ AddElementTest >> testRemoveAt [
 ]
 
 { #category : #tests }
-AddElementTest >> testSelect [
+TestMethodsLinkedList >> testSelect [
 	| list result|
 	list := BasicLinkedList  new.
 	list addLast: 2.
@@ -168,7 +169,7 @@ AddElementTest >> testSelect [
 ]
 
 { #category : #tests }
-AddElementTest >> testSort [
+TestMethodsLinkedList >> testSort [
 	|list  |
 	list := BasicLinkedList  new.
 	list addLast: 2.
@@ -178,7 +179,7 @@ AddElementTest >> testSort [
 ]
 
 { #category : #tests }
-AddElementTest >> testSorted [
+TestMethodsLinkedList >> testSorted [
 	|list  |
 	list := BasicLinkedList new.
 

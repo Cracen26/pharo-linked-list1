@@ -11,13 +11,15 @@ Class {
 
 { #category : #adding }
 BasicLinkedList >> addLast: anObject [
-	| link |
-	link:= BasicLink new .
-	link value: anObject.
-	size = 0 ifFalse: [ tail nextLink value:link ]
-			 	ifTrue: [ head := link ].
-	tail := link .
-   size := size + 1.
+	"add a node to the end of a linkedlist"
+   | links |
+   links := anObject.
+   tail ifNotNil: [ tail nextlink: links ].
+   head ifNil: [ head := links ].
+   tail := links.    
+	size := size + 1.                       
+    ^ links
+ 
 	
 ]
 
@@ -56,7 +58,7 @@ BasicLinkedList >> collect: aBlock [
 { #category : #enumerating }
 BasicLinkedList >> detect: aBlock [
 	| current |
-   current := head .
+   current := head.
    [ current isNotNil ]
    		whileTrue: [ (aBlock value: current value )
       		ifTrue: [ ^ current value ].
