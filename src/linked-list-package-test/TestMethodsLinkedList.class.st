@@ -109,7 +109,6 @@ TestMethodsLinkedList >> testInjectinto [
 	list := BasicLinkedList  new.
 	list addLast: 1.
 	list addLast: 2.
-	list addLast: 3.
 	result := list inject: [:sum :each | sum + each ] into: 0.
 	self assert: result first equals: 10.
 ]

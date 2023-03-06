@@ -118,16 +118,17 @@ BasicLinkedList >> reject: aBlock [
 { #category : #removing }
 BasicLinkedList >> remove: anObject [
 	|current|
+	current:= BasicLink new.
 	current := head .
 	[ current isNotNil ]
    		whileTrue: [ current value = anObject
       		ifTrue: [ current = head 
-   				ifTrue: [ head  := head nextLink ]
-            	ifFalse: [ tail nextLink: current nextLink ].
+   				ifTrue: [ head  := head nextlink ]
+            	ifFalse: [ tail nextlink: current nextlink ].
             		size := size - 1.
                	^ self ].
                	tail := current.
-               	current := current nextLink ].
+               	current := current nextlink ].
 ]
 
 { #category : #accessing }
