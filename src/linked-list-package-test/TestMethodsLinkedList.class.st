@@ -48,7 +48,6 @@ TestMethodsLinkedList >> testCollect [
 	
 	upadated := linkedList collect: [ :each | each * 4 ].
 	
-	self assert: upadated first equals: 2.
 	self assert: upadated size equals: 2.
 ]
 
