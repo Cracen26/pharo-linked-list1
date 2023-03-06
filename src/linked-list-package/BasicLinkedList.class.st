@@ -106,11 +106,12 @@ BasicLinkedList >> isEmpty [
 
 { #category : #enumerating }
 BasicLinkedList >> reject: aBlock [
-	| current |
+	| current|
+	current:= BasicLink new.
    	current := head .
    	[ current isNotNil ]
    		whileTrue: [(aBlock value: current value )	ifFalse: [ ^ current value ].
-      		current := current nextLink ].
+      		current := current nextlink ].
 	^current.
 ]
 
@@ -132,11 +133,12 @@ BasicLinkedList >> remove: anObject [
 { #category : #accessing }
 BasicLinkedList >> removeAt: anObject [
 	| current |
+	current:= BasicLink new.
    	current := head .
-	anObject  timesRepeat: [current := current nextLink ].
+	anObject  timesRepeat: [current := current nextlink ].
    	current = head
-   		ifTrue: [ head  := head nextLink ]
-   		ifFalse: [ tail nextLink: current nextLink ].
+   		ifTrue: [ head  := head nextlink ]
+   		ifFalse: [ tail nextlink: current ].
    	size := size - 1.
 ]
 

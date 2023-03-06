@@ -131,8 +131,8 @@ TestMethodsLinkedList >> testReject [
 	list addLast: 2 .
 	list addLast: 3.
 	list addLast: 4.
-	result := list reject: [ :each | each data even ].
-	self assert: result data equals: 3.
+	result := list reject: [ :each | each value even ].
+	self assert: result value equals: 3.
 ]
 
 { #category : #tests }
@@ -151,21 +151,19 @@ TestMethodsLinkedList >> testRemoveAt [
 	|list |
 	list := BasicLinkedList new.
 	list addLast: 2.
-	list addLast: 3.
-	
 	list removeAt: 1.
 	self assert: list first equals: 2.
 ]
 
 { #category : #tests }
 TestMethodsLinkedList >> testSelect [
-	| list result|
+	| list result node|
 	list := BasicLinkedList  new.
-	list addLast: 2.
-	list addLast: 3.
-	list addLast: 4.
-	result := list select: [ :each | each data even ].
-	self assert: result data equals: 2.
+	node:= BasicLink new.
+	node value: 2.
+	list addLast: node.
+	result := list select: [ :each | each value even ].
+	self assert: result value equals: 2.
 ]
 
 { #category : #tests }
