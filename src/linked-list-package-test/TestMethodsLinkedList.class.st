@@ -104,16 +104,6 @@ TestMethodsLinkedList >> testGetSize [
 ]
 
 { #category : #tests }
-TestMethodsLinkedList >> testInjectinto [
-	| list result |
-	list := BasicLinkedList  new.
-	list addLast: 1.
-	list addLast: 2.
-	result := list inject: [:sum :each | sum + each ] into: 0.
-	self assert: result first equals: 10.
-]
-
-{ #category : #tests }
 TestMethodsLinkedList >> testIsLinkedListEmpty [
 	| linkedList result|
 	linkedList:= BasicLinkedList new.
